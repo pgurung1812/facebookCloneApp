@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>View Post with comments</h1>
+    <h2><%=post.title %></h2>
+
+    <h3><%=post.message %></h3>
+
+    <h2>Comments on this post</h2>
+   <% for(let i=0;i<comments.length;i++){ %>
+     <%=   comments[i].comment %>
+     <br>
+        
+  <%  } %>
+
+    <form action="/profile/comments/<%=post._id%>" method="post">
+      <label for="comment">Comment:</label>
+      <input
+        type="text"
+        name="comment"
+        placeholder="Please enter your comment here"
+      />
+      <button type="submit">Add a Comment</button>
+    </form>
+  </body>
+</html>
