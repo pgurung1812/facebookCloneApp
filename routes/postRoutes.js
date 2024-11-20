@@ -11,6 +11,7 @@ router.post("/posts",ensureAuth,postController.addPost)
 router.delete("/posts/:id",ensureAuth,postController.deletePost)
 router.get("/posts/:id",ensureAuth,postController.getSinglePost)
 router.post("/comments/:id",ensureAuth, commentController.addComment)
+router.put("/posts/:id",ensureAuth,postController.updateLikes)
 
 
 

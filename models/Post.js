@@ -1,4 +1,4 @@
-const { text } = require("express")
+
 const mongoose=require("mongoose")
 
 const postSchema= new mongoose.Schema({
@@ -18,10 +18,10 @@ const postSchema= new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
-    isPublished:{
-        type: Boolean,
-        required: true,
-    }
+   likes:{ 
+    type: Number,
+    required:true
+},
 }
 
 )

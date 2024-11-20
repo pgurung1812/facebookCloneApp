@@ -20,9 +20,28 @@ module.exports={
     },
     getPost: async(request,response)=>{
        try{
+        
          const loggedInUser= await user.findById({_id:request.user})
-         const posts= await post.find().lean()
-         response.render("post.ejs",{posts:posts,user:loggedInUser})
+     
+         const posts= await post.find({user:request.user}).lean()
+
+          let followpost
+           console.log(loggedInUser.following)
+
+            loggedInUser.following.forEach(async(currUser)=>{
+               followpost=await post.find({user:currUser}).lean()
+               for(let i=0;i<followpost.length;i++){
+                posts.push(followpost[i])
+               }
+            })
+          
+
+            
+         let totUsers=await user.find().lean()
+         const totalUsers=totUsers.filter((currentUser)=>{
+            return currentUser._id!=request.user
+         })
+         response.render("post.ejs",{posts:posts,user:loggedInUser,totUsers:totalUsers})
        }
        catch(err){
         console.log(err)
@@ -35,7 +54,7 @@ module.exports={
                 title:request.body.title,
                 message:request.body.post,
                 user:request.user,
-                isPublished:false
+                likes:0
 
             })
             response.redirect("/profile/posts")
@@ -68,5 +87,18 @@ module.exports={
         catch(err){
             console.log(err)
         }
+    },
+    updateLikes: async(request,response)=>{
+        try{
+          const currPost= await post.findById({_id:request.params.id})
+          const updateLikePost= await post.findByIdAndUpdate(request.params.id,{likes:currPost.likes+1})
+  
+          response.redirect("/profile/posts")
+
+        }
+        catch(err){
+            console.log(err)
+        }
+
     }
 }

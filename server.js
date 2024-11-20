@@ -7,7 +7,7 @@ const MongoStore = require('connect-mongo')
 const flash = require('express-flash')
 const logger = require('morgan')
 const homeRoutes= require("./routes/homeRoutes")
-
+const userRoutes= require("./routes/userRoutes")
 const postRoutes= require("./routes/postRoutes")
 const methodOverride = require("method-override");
 const connectDB=require("./config/database")
@@ -47,6 +47,8 @@ app.use(flash())
 app.use("/",homeRoutes)
 
 app.use("/profile",postRoutes)
+
+app.use("/user",userRoutes)
 
 
 
