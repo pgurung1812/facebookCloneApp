@@ -33,6 +33,8 @@
     <%    for(let i=0;i<posts.length;i++){ %>
         <%=   posts[i].title %>
          <%=  posts[i].message %>
+       
+         <img  src="<%=posts[i].image%>" width="500" height="500">
          <form
                 action="/profile/posts/<%= posts[i]._id %>?_method=PUT"
                 method="POST"             
@@ -53,14 +55,8 @@
         <%} %>
          <br>
 
-   <form action="/profile/posts" method="post"> 
-    <label for="title">Title:</label>
-      <input type="text" name="title" placeholder="Please enter title here">
-    <label for="post">Post:</label>
-    <input type="text" name="post" placeholder="Please enter Post here">
-    <button type="submit">Add a post</button>
 
-   </form>
+
    <h2>Current Users list:</h2>
    <% for(let i=0;i<totUsers.length;i++){ %>
       <%=totUsers[i].userName %>
@@ -69,7 +65,7 @@
                 method="POST"
                 class="col-3"
               >
-                <button class="btn btn-primary fa fa-user-plus" type="submit"></button>
+                <button class="btn btn-primary fa fa-user-plus " type="submit">  Click to follow</button>
          </form>
    <% } %>
 

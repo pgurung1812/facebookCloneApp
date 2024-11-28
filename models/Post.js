@@ -12,7 +12,7 @@ const postSchema= new mongoose.Schema({
     },
     message:{
         type: String,
-        required: true,
+     
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
@@ -22,6 +22,18 @@ const postSchema= new mongoose.Schema({
     type: Number,
     required:true
 },
+image: {
+    type: String,
+  
+  },
+  cloudinaryId: {
+    type: String,
+  
+  },
+  caption: {
+    type: String,
+  
+  },
 }
 
 )

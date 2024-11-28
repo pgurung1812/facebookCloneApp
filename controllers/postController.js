@@ -2,6 +2,7 @@
 const post= require("../models/Post")
 const user= require("../models/User")
 const comment= require("../models/Comment")
+const cloudinary = require("../middleware/cloudinary");
 module.exports={
 
     getProfile: async(request,response)=>{
@@ -26,7 +27,7 @@ module.exports={
          const posts= await post.find({user:request.user}).lean()
 
           let followpost
-           console.log(loggedInUser.following)
+          
 
             loggedInUser.following.forEach(async(currUser)=>{
                followpost=await post.find({user:currUser}).lean()
@@ -34,12 +35,16 @@ module.exports={
                 posts.push(followpost[i])
                }
             })
-          
-
             
          let totUsers=await user.find().lean()
+         console.log(loggedInUser.following)
          const totalUsers=totUsers.filter((currentUser)=>{
-            return currentUser._id!=request.user
+          
+           if(!loggedInUser.following.includes(currentUser._id) && (currentUser._id!=request.user)){
+          
+            return currentUser
+           }
+           
          })
          response.render("post.ejs",{posts:posts,user:loggedInUser,totUsers:totalUsers})
        }
@@ -95,6 +100,27 @@ module.exports={
   
           response.redirect("/profile/posts")
 
+        }
+        catch(err){
+            console.log(err)
+        }
+
+    },
+    addImages: async(request,response)=>{
+
+        try{
+            const result = await cloudinary.uploader.upload(request.file.path);
+
+            await post.create({
+              title: request.body.title,
+              image: result.secure_url,
+              cloudinaryId: result.public_id,
+              caption: request.body.caption,
+              likes: 0,
+              user: request.user,
+            });
+            console.log("image posted")
+            response.redirect("/profile/posts")
         }
         catch(err){
             console.log(err)

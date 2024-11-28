@@ -1,8 +1,8 @@
 const express= require("express")
 const router= express.Router()
-
+const upload = require("../middleware/multer");
 const postController= require("../controllers/postController")
-const {ensureAuth}= require("../middleware/auth")
+const {ensureAuth,ensureGuest}= require("../middleware/auth")
 const commentController= require("../controllers/commentController")
 
 router.get("/",ensureAuth,postController.getProfile)
@@ -12,6 +12,7 @@ router.delete("/posts/:id",ensureAuth,postController.deletePost)
 router.get("/posts/:id",ensureAuth,postController.getSinglePost)
 router.post("/comments/:id",ensureAuth, commentController.addComment)
 router.put("/posts/:id",ensureAuth,postController.updateLikes)
+router.post("/posts/images",upload.single("file"),postController.addImages)
 
 
 
