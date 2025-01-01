@@ -33,8 +33,10 @@
     <%    for(let i=0;i<posts.length;i++){ %>
         <%=   posts[i].title %>
          <%=  posts[i].message %>
-       
+      
+        
          <img  src="<%=posts[i].image%>" width="500" height="500">
+      
          <form
                 action="/profile/posts/<%= posts[i]._id %>?_method=PUT"
                 method="POST"             

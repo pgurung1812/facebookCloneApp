@@ -35,6 +35,7 @@ module.exports={
                 posts.push(followpost[i])
                }
             })
+
             
          let totUsers=await user.find().lean()
          console.log(loggedInUser.following)
