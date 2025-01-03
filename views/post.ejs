@@ -25,7 +25,7 @@
   />
   
 <body>
-    <h1>Hello <%=user.userName%></h1>
+    <h1>Hello, <%=user.userName%></h1>
      <a href="/logout">Sign out</a> <br>
      <a href="/profile">Go to current user's Profile</a> <br>
 
@@ -34,16 +34,16 @@
         <%=   posts[i].title %>
          <%=  posts[i].message %>
       
-        
+    
          <img  src="<%=posts[i].image%>" width="500" height="500">
-      
+   
          <form
                 action="/profile/posts/<%= posts[i]._id %>?_method=PUT"
                 method="POST"             
               >
                 <button class="btn btn-primary fa fa-thumbs-up" type="submit"></button>
          </form>
-          <%= posts[i].likes %>
+          <%= posts[i].likes %> <br>
          <a href="/profile/posts/<%=posts[i]._id%>">View Post here</a>
          
          <form
@@ -59,7 +59,7 @@
 
 
 
-   <h2>Current Users list:</h2>
+   <h2>Current Users list Logged In User Not Following:</h2>
    <% for(let i=0;i<totUsers.length;i++){ %>
       <%=totUsers[i].userName %>
       <form

@@ -12,11 +12,11 @@ Optimizations
 
 (optional)
 
-You don't have to include this section but interviewers love that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are GREAT to bring up in interviews and you can use this section as reference when studying for technical interviews!
+when listing all the posts made by the users that current logged in user is following, it would definitely be a good idea to list each post's authors, comments made on the post. also, listing all the users current users is following would add to its appeal. also, I should only allow deleting the posts by their authors. letting users either post text or images would be a great addition too.
 
 Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those whoa this is awesome or wow I actually did it! moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
+I developed the attitude of never giving up even when faced with number of errors whiled developing the program. I was having trouble with updating the users following list by current user. Through various trial and error, I finally came up with the solution of using array to store the list and sending the list to the front end to display the list.
 
 Examples:
 
