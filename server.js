@@ -31,7 +31,7 @@ app.use(
       secret: 'keyboard cat',
       resave: false,
       saveUninitialized: false,
-      store:  MongoStore.create({ mongoUrl: "mongodb+srv://pgurung1:Hitman1812!@cluster0.4vwrv.mongodb.net/member?retryWrites=true&w=majority&appName=Cluster0"
+      store:  MongoStore.create({ mongoUrl: process.env.DB_STRING
       
        }),  
 
