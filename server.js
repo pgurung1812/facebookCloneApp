@@ -31,10 +31,9 @@ app.use(
       secret: 'keyboard cat',
       resave: false,
       saveUninitialized: false,
-      store:  MongoStore.create({ mongoUrl: process.env.DB_STRING,
-        
-      
+      store:  MongoStore.create({ mongoUrl: process.env.DB_STRING
        }),  
+       cookie: { maxAge: 1000 * 60 * 60 * 24 },
 
     })
   )
